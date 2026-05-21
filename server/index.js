@@ -10,6 +10,7 @@ const seedDatabase = require('./utils/seedDatabase');
 
 const app = express();
 const server = http.createServer(app);
+
 const io = new Server(server, {
   cors: {
     origin: process.env.CLIENT_URL || 'http://localhost:5173',
@@ -31,14 +32,19 @@ app.use('/api/v1/leaderboard', require('./routes/leaderboardRoutes'));
 
 require('./socket/raceHandler')(io);
 
-const clientDistPath = path.join(__dirname, "../../client/dist");
+const clientDistPath = path.join(__dirname, '../client/dist');
+
 if (fs.existsSync(clientDistPath)) {
   app.use(express.static(clientDistPath));
+
   app.get(/.*/, (req, res, next) => {
     if (req.path.startsWith('/api')) {
       return next();
     }
-    return res.sendFile(path.join(clientDistPath, 'index.html'));
+
+    return res.sendFile(
+      path.join(clientDistPath, 'index.html')
+    );
   });
 }
 
@@ -48,11 +54,6 @@ const start = async () => {
   await connectDB();
   await seedDatabase();
 
-  app.use(express.static(clientDistPath));
-
-app.use((req, res) => {
-  res.sendFile(path.join(clientDistPath, "index.html"));
-});
   server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
