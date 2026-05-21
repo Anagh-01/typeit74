@@ -5,14 +5,12 @@ services:
     plan: free
 
     buildCommand: |
+      npm install
       cd client
       npm install
-      npx vite build
-      cd ..
-      cd server
-      npm install
+      npm run build
 
-    startCommand: cd server && npm start
+    startCommand: cd server && npm install && npm start
 
     healthCheckPath: /api/health
 
