@@ -3,8 +3,8 @@ services:
     name: typeit74
     runtime: node
     plan: free
-    buildCommand: npm ci && npm ci --prefix server && npm ci --prefix client && npm run build --prefix client
-    startCommand: npm run start
+    buildCommand: cd client && npm install && npm run build
+    startCommand: cd server && npm start
     healthCheckPath: /api/health
     autoDeploy: true
     envVars:
