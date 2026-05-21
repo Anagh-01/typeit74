@@ -4,6 +4,11 @@ let memoryServer;
 
 const connectDB = async () => {
   const uri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/typeit74';
+  const isProduction = process.env.NODE_ENV === 'production';
+
+  if (isProduction && !process.env.MONGO_URI) {
+    throw new Error('MONGO_URI is required in production.');
+  }
 
   try {
     const conn = await mongoose.connect(uri, { serverSelectionTimeoutMS: 3000 });
@@ -11,6 +16,10 @@ const connectDB = async () => {
     return;
   } catch (error) {
     console.warn(`MongoDB unavailable (${error.message}). Starting in-memory database...`);
+  }
+
+  if (isProduction) {
+    throw new Error('MongoDB connection failed in production. Check MONGO_URI and Atlas network access.');
   }
 
   try {

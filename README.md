@@ -65,3 +65,7 @@ npm run start
 ```
 
 Set `VITE_API_URL` when building the client if the API is hosted on a different origin.
+
+## Deployment
+
+This repository includes `render.yaml` for deploying the full-stack app as one Render web service. See [DEPLOYMENT.md](./DEPLOYMENT.md) for the Render + MongoDB Atlas setup steps.

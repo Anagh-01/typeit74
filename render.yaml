@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: typeit74
+    runtime: node
+    buildCommand: npm ci && npm ci --prefix server && npm ci --prefix client && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URI
+        sync: false
