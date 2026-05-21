@@ -50,7 +50,7 @@ const start = async () => {
 
   app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.get("/*", (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
   server.listen(PORT, () => {
