@@ -8,14 +8,13 @@ services:
       cd client
       npm install
       npm run build
-      cd ../server
+      cd ..
+      cd server
       npm install
 
-    startCommand: cd server && npm start
+    startCommand: cd server && node index.js
 
     healthCheckPath: /api/health
-
-    autoDeploy: true
 
     envVars:
       - key: NODE_ENV
