@@ -5,12 +5,10 @@ services:
     plan: free
 
     buildCommand: |
-      npm install
-      cd client
-      npm install
-      npm run build
+      cd client && npm install --include=dev && npm run build
+      cd ../server && npm install
 
-    startCommand: cd server && npm install && npm start
+    startCommand: cd server && npm start
 
     healthCheckPath: /api/health
 
