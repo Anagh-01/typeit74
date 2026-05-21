@@ -31,7 +31,7 @@ app.use('/api/v1/leaderboard', require('./routes/leaderboardRoutes'));
 
 require('./socket/raceHandler')(io);
 
-const clientDistPath = path.resolve(__dirname, '../client/dist');
+const clientDistPath = path.join(__dirname, "../../client/dist");
 if (fs.existsSync(clientDistPath)) {
   app.use(express.static(clientDistPath));
   app.get(/.*/, (req, res, next) => {
@@ -48,10 +48,10 @@ const start = async () => {
   await connectDB();
   await seedDatabase();
 
-  app.use(express.static(path.join(__dirname, "../client/dist")));
+  app.use(express.static(clientDistPath));
 
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+  res.sendFile(path.join(clientDistPath, "index.html"));
 });
   server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
