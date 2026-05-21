@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { SettingsContext } from '../context/SettingsContext';
+import { SettingsContext } from '../context/settings-context';
 
 const Toggle = ({ label, description, checked, onChange }) => (
   <div className="flex items-center justify-between py-4 border-b border-slate-700/50 last:border-0">

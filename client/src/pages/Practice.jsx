@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, useRef, useCallback } from 'react';
 import useTypingEngine from '../hooks/useTypingEngine';
 import TypingArea from '../components/TypingArea';
-import { SettingsContext } from '../context/SettingsContext';
+import { SettingsContext } from '../context/settings-context';
 import { saveResult } from '../api/client';
 import { generatePracticeText, MODE_LABELS } from '../utils/practiceText';
 import { Clock, RefreshCcw, Loader2 } from 'lucide-react';

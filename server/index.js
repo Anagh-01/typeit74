@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
+const path = require('path');
+const fs = require('fs');
 const { Server } = require('socket.io');
 const connectDB = require('./utils/db');
 const seedDatabase = require('./utils/seedDatabase');
@@ -28,6 +30,17 @@ app.use('/api/v1/user', require('./routes/userRoutes'));
 app.use('/api/v1/leaderboard', require('./routes/leaderboardRoutes'));
 
 require('./socket/raceHandler')(io);
+
+const clientDistPath = path.resolve(__dirname, '../client/dist');
+if (fs.existsSync(clientDistPath)) {
+  app.use(express.static(clientDistPath));
+  app.get(/.*/, (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    return res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5001;
 

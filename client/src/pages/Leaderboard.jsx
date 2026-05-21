@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Trophy, Medal, Star, Loader2 } from 'lucide-react';
 import { getLeaderboard } from '../api/client';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/auth-context';
 
 const Leaderboard = () => {
   const { user } = useContext(AuthContext);

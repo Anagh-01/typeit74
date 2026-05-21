@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Keyboard, User, Trophy, BookOpen, Settings, LogOut, LogIn } from 'lucide-react';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/auth-context';
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);

@@ -1,6 +1,5 @@
-import { createContext, useState, useEffect } from 'react';
-
-export const SettingsContext = createContext();
+import { useState, useEffect } from 'react';
+import { SettingsContext } from './settings-context';
 
 const defaultSettings = {
   theme: 'dark',

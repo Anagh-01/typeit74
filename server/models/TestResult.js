@@ -9,6 +9,6 @@ const testResultSchema = new mongoose.Schema({
   mode: { type: String, enum: ['words', 'sentences', 'paragraph', 'custom', 'code', 'numbers'], required: true },
   difficulty: { type: String, enum: ['beginner', 'intermediate', 'advanced'], required: true },
   keyStats: { type: Map, of: Object }, // e.g., { 'a': { errors: 2, total: 10, avgTime: 120 } }
-}, { timestamps: true });
+}, { timestamps: true, suppressReservedKeysWarning: true });
 
 module.exports = mongoose.model('TestResult', testResultSchema);
