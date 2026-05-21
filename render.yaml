@@ -2,6 +2,7 @@ services:
   - type: web
     name: typeit74
     runtime: node
+    plan: free
     buildCommand: npm ci && npm ci --prefix server && npm ci --prefix client && npm run build
     startCommand: npm run start
     healthCheckPath: /api/health
